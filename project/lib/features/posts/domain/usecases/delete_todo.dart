@@ -7,7 +7,6 @@ import 'package:dartz/dartz.dart';
 import 'package:project/core/error/failure.dart';
 import 'package:project/features/posts/domain/repository/todo_repository.dart';
 
-import '../entities/todo.dart';
 
 class DeleteTodoUseCAse{
 
