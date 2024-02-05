@@ -2,9 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:project/core/error/failure.dart';
 import 'package:project/features/posts/domain/entities/todo.dart';
 
-abstract class TodoRepository {
+abstract class PostsRepository {
 // we use future because the data is coming from api ..so we should wait a little bt until the data is ready
-  Future<Either<Failure,List<TodoEntity>>> getAllTodos();
+  Future<Either<Failure, List<TodoEntity>>> getAllTodos();
 
   Future<Either<Failure, Unit>> deletePost(int id);
   Future<Either<Failure, Unit>> updatePost(TodoEntity todoEntity);

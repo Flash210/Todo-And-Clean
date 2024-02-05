@@ -4,10 +4,10 @@ import 'package:project/features/posts/domain/repository/todo_repository.dart';
 
 import '../entities/todo.dart';
 
-class GetAllTodosUseCase {
-  final TodoRepository repository;
+class GetAllPostsUseCase {
+  final PostsRepository repository;
 
-  GetAllTodosUseCase(this.repository);
+  GetAllPostsUseCase({ required this.repository});
 
   Future<Either<Failure, List<TodoEntity>>> call() async {
     return await repository.getAllTodos();

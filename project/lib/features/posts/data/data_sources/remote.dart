@@ -23,12 +23,12 @@ its a part of solid principal
 
 */
 
-class TodoRemoteDataSourceImpl implements Remote{
+class PostRemoteDataSourceImpl implements Remote{
 
 
 final http.Client client;
 
-  TodoRemoteDataSourceImpl(this.client);
+  PostRemoteDataSourceImpl({required this.client});
 
   @override
   Future<Unit> addPost(TodoModel todoModel) async{

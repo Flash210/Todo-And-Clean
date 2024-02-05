@@ -8,15 +8,15 @@ import 'package:project/features/posts/data/models/todo.dart';
 import 'package:project/features/posts/domain/entities/todo.dart';
 import 'package:project/features/posts/domain/repository/todo_repository.dart';
 
-typedef Future<Unit>  DeleteOrUpdateOrAdd();
+typedef Future<Unit> DeleteOrUpdateOrAdd();
 
-class TodoReposiotryUmpl implements TodoRepository {
+class PostsReposiotryImpl implements PostsRepository {
   final Remote remoteDataSource;
   final Local localDataSource;
   final NetworkInfo networkInfo;
 
-  TodoReposiotryUmpl(
-      this.remoteDataSource, this.localDataSource, this.networkInfo);
+  PostsReposiotryImpl({required this.remoteDataSource, required this.localDataSource, required this.networkInfo});
+
 
   @override
   Future<Either<Failure, Unit>> addPost(TodoEntity todoEntity) async {

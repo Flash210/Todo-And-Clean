@@ -10,10 +10,10 @@ abstract class Local {
   Future<Unit> casheTodos(List<TodoModel> todoModel);
 }
 
-class TodoLocalDataSourceImpl implements Local {
+class PostLocalDataSourceImpl implements Local {
   final SharedPreferences sharedPreferences;
 
-  TodoLocalDataSourceImpl(this.sharedPreferences);
+  PostLocalDataSourceImpl({required this.sharedPreferences});
 
   @override
   Future<Unit> casheTodos(List<TodoModel> todoModel) {
