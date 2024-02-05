@@ -12,7 +12,7 @@ class PostsInitial extends PostsStates {}
 class LoadingPostsState extends PostsStates {}
 
 class LoadedPostsState extends PostsStates {
-  final List<TodoEntity> todos;
+  final List<Posts> todos;
 
   LoadedPostsState({required this.todos});
 

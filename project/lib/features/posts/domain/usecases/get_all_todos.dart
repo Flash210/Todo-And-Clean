@@ -1,15 +1,15 @@
 import 'package:dartz/dartz.dart';
 import 'package:project/core/error/failure.dart';
-import 'package:project/features/posts/domain/repository/todo_repository.dart';
+import 'package:project/features/posts/domain/repository/posts_repository.dart';
 
-import '../entities/todo.dart';
+import '../entities/posts.dart';
 
 class GetAllPostsUseCase {
   final PostsRepository repository;
 
-  GetAllPostsUseCase({ required this.repository});
+  GetAllPostsUseCase({required this.repository});
 
-  Future<Either<Failure, List<TodoEntity>>> call() async {
+  Future<Either<Failure, List<Posts>>> call() async {
     return await repository.getAllTodos();
   }
 

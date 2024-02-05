@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:project/core/error/failure.dart';
-import 'package:project/features/posts/domain/entities/todo.dart';
+import 'package:project/features/posts/domain/entities/posts.dart';
 import 'package:project/features/posts/domain/usecases/add_todo.dart';
 import 'package:project/features/posts/domain/usecases/delete_todo.dart';
 import 'package:project/features/posts/domain/usecases/update_todo.dart';

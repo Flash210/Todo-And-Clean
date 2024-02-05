@@ -8,7 +8,7 @@ abstract class CrudEvent extends Equatable {
 }
 
 class AddPostEvent extends CrudEvent {
-  final TodoEntity post;
+  final Posts post;
 
   AddPostEvent(this.post);
 
@@ -16,9 +16,8 @@ class AddPostEvent extends CrudEvent {
   List<Object> get props => [post];
 }
 
-
 class UpdatePostEvent extends CrudEvent {
-  final TodoEntity post;
+  final Posts post;
 
   UpdatePostEvent(this.post);
 
@@ -26,9 +25,8 @@ class UpdatePostEvent extends CrudEvent {
   List<Object> get props => [post];
 }
 
-
 class DeletePostEvent extends CrudEvent {
-final int postId;
+  final int postId;
 
   DeletePostEvent(this.postId);
 

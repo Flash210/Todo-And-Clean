@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:project/core/error/failure.dart';
-import 'package:project/features/posts/domain/entities/todo.dart';
+import 'package:project/features/posts/domain/entities/posts.dart';
 import 'package:project/features/posts/domain/usecases/get_all_todos.dart';
 
 part 'posts_event.dart';
@@ -30,8 +30,7 @@ class PostsBloc extends Bloc<PostsEvents, PostsStates> {
     });
   }
 
-  PostsStates mapFailureOrPostToState(
-      Either<Failure, List<TodoEntity>> either) {
+  PostsStates mapFailureOrPostToState(Either<Failure, List<Posts>> either) {
     return either.fold(
         (failure) => ErrorPostsState(message: mapFailureToMessage(failure)),
         (posts) => LoadedPostsState(todos: posts));

@@ -1,14 +1,14 @@
 import 'package:dartz/dartz.dart';
 import 'package:project/core/error/failure.dart';
-import 'package:project/features/posts/domain/entities/todo.dart';
+import 'package:project/features/posts/domain/entities/posts.dart';
 
 abstract class PostsRepository {
 // we use future because the data is coming from api ..so we should wait a little bt until the data is ready
-  Future<Either<Failure, List<TodoEntity>>> getAllTodos();
+  Future<Either<Failure, List<Posts>>> getAllTodos();
 
   Future<Either<Failure, Unit>> deletePost(int id);
-  Future<Either<Failure, Unit>> updatePost(TodoEntity todoEntity);
-  Future<Either<Failure, Unit>> addPost(TodoEntity todoEntity);
+  Future<Either<Failure, Unit>> updatePost(Posts todoEntity);
+  Future<Either<Failure, Unit>> addPost(Posts todoEntity);
 
 /* we use unit instead of void because as we say that Either return left anf right 
 and our left should return nothing

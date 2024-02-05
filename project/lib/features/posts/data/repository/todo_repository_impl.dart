@@ -5,8 +5,8 @@ import 'package:project/core/network/network_info.dart';
 import 'package:project/features/posts/data/data_sources/local.dart';
 import 'package:project/features/posts/data/data_sources/remote.dart';
 import 'package:project/features/posts/data/models/todo.dart';
-import 'package:project/features/posts/domain/entities/todo.dart';
-import 'package:project/features/posts/domain/repository/todo_repository.dart';
+import 'package:project/features/posts/domain/entities/posts.dart';
+import 'package:project/features/posts/domain/repository/posts_repository.dart';
 
 typedef Future<Unit> DeleteOrUpdateOrAdd();
 
@@ -15,11 +15,13 @@ class PostsReposiotryImpl implements PostsRepository {
   final Local localDataSource;
   final NetworkInfo networkInfo;
 
-  PostsReposiotryImpl({required this.remoteDataSource, required this.localDataSource, required this.networkInfo});
-
+  PostsReposiotryImpl(
+      {required this.remoteDataSource,
+      required this.localDataSource,
+      required this.networkInfo});
 
   @override
-  Future<Either<Failure, Unit>> addPost(TodoEntity todoEntity) async {
+  Future<Either<Failure, Unit>> addPost(Posts todoEntity) async {
     final TodoModel todoModel = TodoModel(
         id: todoEntity.id,
         title: todoEntity.title,
@@ -45,7 +47,7 @@ class PostsReposiotryImpl implements PostsRepository {
   }
 
   @override
-  Future<Either<Failure, List<TodoEntity>>> getAllTodos() async {
+  Future<Either<Failure, List<Posts>>> getAllTodos() async {
     if (await networkInfo.isConnected) //await because its future
     {
       try {
@@ -66,7 +68,7 @@ class PostsReposiotryImpl implements PostsRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> updatePost(TodoEntity todoEntity) async {
+  Future<Either<Failure, Unit>> updatePost(Posts todoEntity) async {
     final TodoModel todoModel = TodoModel(
         id: todoEntity.id,
         title: todoEntity.title,

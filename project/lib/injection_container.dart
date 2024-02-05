@@ -4,7 +4,7 @@ import 'package:project/core/network/network_info.dart';
 import 'package:project/features/posts/data/data_sources/local.dart';
 import 'package:project/features/posts/data/data_sources/remote.dart';
 import 'package:project/features/posts/data/repository/todo_repository_impl.dart';
-import 'package:project/features/posts/domain/repository/todo_repository.dart';
+import 'package:project/features/posts/domain/repository/posts_repository.dart';
 import 'package:project/features/posts/domain/usecases/add_todo.dart';
 import 'package:project/features/posts/domain/usecases/delete_todo.dart';
 import 'package:project/features/posts/domain/usecases/get_all_todos.dart';
@@ -14,51 +14,40 @@ import 'package:project/features/posts/presentation/bloc/posts/posts_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
-final injection = GetIt.instance;
+final  sl = GetIt.instance;
 
 Future<void> init() async {
 //!Features
   //bloc
   // factory is a design pattern
 
-  injection.registerFactory(() => PostsBloc(injection()));
-  injection.registerFactory(() => CrudBloc(
-      addPostUseCase: injection(),
-      deletePostUseCase: injection(),
-      updatePostUseCase: injection()));
+  sl.registerFactory(() => PostsBloc(sl()));
+  sl.registerFactory(() => CrudBloc(
+      addPostUseCase: sl(), deletePostUseCase: sl(), updatePostUseCase: sl()));
 
   //uses cases here and repo and the data sorces we need only one objet  to reuse it called singelton
-  injection
-      .registerLazySingleton(() => GetAllPostsUseCase(repository: injection()));
-  injection
-      .registerLazySingleton(() => AddPostsUseCase(repository: injection()));
-  injection
-      .registerLazySingleton(() => DeletePostUseCAse(repository: injection()));
-  injection
-      .registerLazySingleton(() => UpdatePostsUseCase(repository: injection()));
+  sl.registerLazySingleton(() => GetAllPostsUseCase(repository: sl()));
+  sl.registerLazySingleton(() => AddPostsUseCase(repository: sl()));
+  sl.registerLazySingleton(() => DeletePostUseCAse(repository: sl()));
+  sl.registerLazySingleton(() => UpdatePostsUseCase(repository: sl()));
 
   //rpeository
-  injection.registerLazySingleton(() => PostsReposiotryImpl(
-      remoteDataSource: injection(),
-      localDataSource: injection(),
-      networkInfo: injection()));
+  sl.registerLazySingleton<PostsRepository>(() => PostsReposiotryImpl(
+      remoteDataSource: sl(), localDataSource: sl(), networkInfo: sl()));
 
   //data sources
-  injection.registerLazySingleton(
-      () => PostRemoteDataSourceImpl(client: injection()));
-  injection.registerLazySingleton(
-      () => PostLocalDataSourceImpl(sharedPreferences: injection()));
+  sl.registerLazySingleton<Remote>(() => PostRemoteDataSourceImpl(client: sl()));
+  sl.registerLazySingleton<Local>(
+      () => PostLocalDataSourceImpl(sharedPreferences: sl()));
 
   //!Core
-  injection
-      .registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(injection()));
+  sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
 
   //! externel
   final sharedPrefences = await SharedPreferences.getInstance();
-  injection.registerLazySingleton(() => sharedPrefences);
+  sl.registerLazySingleton(() => sharedPrefences);
 
-  injection.registerLazySingleton(() => http.Client());
+  sl.registerLazySingleton(() => http.Client());
 
-
-  injection.registerLazySingleton(() => InternetConnectionChecker());
+  sl.registerLazySingleton(() => InternetConnectionChecker());
 }
