@@ -12,9 +12,9 @@ class PostsInitial extends PostsStates {}
 class LoadingPostsState extends PostsStates {}
 
 class LoadedPostsState extends PostsStates {
-  final List<Posts> todos;
+  final List<Post> todos;
 
-  LoadedPostsState({required this.todos});
+  const LoadedPostsState({required this.todos});
 
   @override
   List<Object> get props => [todos];
@@ -23,7 +23,7 @@ class LoadedPostsState extends PostsStates {
 class ErrorPostsState extends PostsStates {
   final String message;
 
-  ErrorPostsState({required this.message});
+  const ErrorPostsState({required this.message});
   @override
   List<Object> get props => [message];
 }

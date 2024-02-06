@@ -35,8 +35,9 @@ class PostLocalDataSourceImpl implements Local {
           .map<TodoModel>((jsonPostModel) => TodoModel.fromJson(jsonPostModel)).toList();
 
           return Future.value(jsonToTodoModels);
-        }else 
-        throw EmptyCasheExpetion();
+        }else {
+          throw EmptyCasheExpetion();
+        }
 
 
 

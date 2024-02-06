@@ -8,18 +8,18 @@ abstract class CrudEvent extends Equatable {
 }
 
 class AddPostEvent extends CrudEvent {
-  final Posts post;
+  final Post post;
 
-  AddPostEvent(this.post);
+  const AddPostEvent(this.post);
 
   @override
   List<Object> get props => [post];
 }
 
 class UpdatePostEvent extends CrudEvent {
-  final Posts post;
+  final Post post;
 
-  UpdatePostEvent(this.post);
+  const UpdatePostEvent(this.post);
 
   @override
   List<Object> get props => [post];
@@ -28,7 +28,7 @@ class UpdatePostEvent extends CrudEvent {
 class DeletePostEvent extends CrudEvent {
   final int postId;
 
-  DeletePostEvent(this.postId);
+  const DeletePostEvent(this.postId);
 
   @override
   List<Object> get props => [postId];

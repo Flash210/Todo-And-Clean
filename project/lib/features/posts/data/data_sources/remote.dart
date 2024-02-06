@@ -23,6 +23,12 @@ its a part of solid principal
 
 */
 
+
+/*
+Data sources: Consist of remote and local Data Sources. Remote Data Source will perform 
+HTTP requests on the API. 
+While local Data Source will cache or persist data.
+*/
 class PostRemoteDataSourceImpl implements Remote{
 
 
@@ -38,7 +44,7 @@ final http.Client client;
     "completed":todoModel.completed
    };
 
-   final response=await client.post(Uri.parse(todoApiBaseUrl+"/posts/"),body:body);
+   final response=await client.post(Uri.parse("$todoApiBaseUrl/posts/"),body:body);
 
 //response for succes create is 201
    if ( response.statusCode==201){
@@ -57,7 +63,7 @@ final http.Client client;
   @override
   Future<Unit> deletePost(int id) async{
    
-   final response= await client.delete(Uri.parse(todoApiBaseUrl+"/posts/${id.toString()}"),
+   final response= await client.delete(Uri.parse("$todoApiBaseUrl/posts/${id.toString()}"),
    headers: {"Content-Type":"application/json"}
    );
 
@@ -73,7 +79,7 @@ final http.Client client;
   @override
   Future<List<TodoModel>> getAllTodos() async {
    
-final response=await client.get(Uri.parse(todoApiBaseUrl + "/todos/"),
+final response=await client.get(Uri.parse("$todoApiBaseUrl/todos/"),
 headers: {"Content-Type":"application/json"},);
 
 if (response.statusCode==200){
@@ -96,7 +102,7 @@ final body={
   "body":todoModel.completed
 };
 
-final response=await client.patch(Uri.parse(todoApiBaseUrl+"/post/$id"),body: body);
+final response=await client.patch(Uri.parse("$todoApiBaseUrl/post/$id"),body: body);
 
 
 if ( response.statusCode==200){

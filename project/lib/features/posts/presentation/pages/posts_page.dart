@@ -1,8 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project/core/widgets/loading_widget.dart';
 import 'package:project/features/posts/presentation/bloc/posts/posts_bloc.dart';
+import 'package:project/features/posts/presentation/pages/post_add_or_update.dart';
 import 'package:project/features/posts/presentation/widgtes/message_display_widget.dart';
 import 'package:project/features/posts/presentation/widgtes/post_list.dart';
 
@@ -13,38 +13,54 @@ class PostsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: buildBody(),
-      floatingActionButton: buildFloatingBtn(),
+      floatingActionButton: buildFloatingBtn(context),
     );
   }
 
   buildBody() {
     return Padding(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: BlocBuilder<PostsBloc,PostsStates>(
         builder: (context,state){
           if ( state is LoadingPostsState){
 
 
-            return LoadingWidget();
+            return const LoadingWidget();
 
           }else if ( state is LoadedPostsState){
-            return PostListWidget(
-              posts:state.todos
+            return RefreshIndicator(
+                onRefresh: () => onRefresh(context),
+              child: PostListWidget(
+                posts:state.todos
+              ),
             );
           }else if ( state is ErrorPostsState){
             return MessageDisplayWidget(message :state.message);
           }
-          return LoadingWidget();
+          return const LoadingWidget();
         }
         
         )
     );
   }
   
-  Widget buildFloatingBtn() {
+  Widget buildFloatingBtn( BuildContext context) {
     return FloatingActionButton(
-      onPressed: () => {},
-      child: Icon(Icons.add),
+      onPressed: () => {
+        Navigator.push(context, MaterialPageRoute(
+          builder:(_) =>const PostAddOrUpdate(isUpdate:false  ))
+        )
+        
+      },
+      child: const Icon(Icons.add),
     );
+  }
+  
+  Future<void> onRefresh (BuildContext context)async {
+
+
+BlocProvider.of<PostsBloc>(context).add(RefreshPostsEvents());
+
+
   }
 }

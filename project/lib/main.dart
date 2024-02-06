@@ -29,8 +29,13 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: PostsPage(),
+        home: const PostsPage(),
       ),
     );
   }
 }
+
+//? when the app run we send an event to the bloc and the will talk to use case and use case talk to repository 
+//? and the repository will talk to the data source if there is a net will talk with remote data source if there is no net will talk with local data source
+/*else will go to local data source and get the data and send it to the repository and the repository will send it to the use case 
+and the use case will send it to the bloc and the bloc will send it to the ui*/

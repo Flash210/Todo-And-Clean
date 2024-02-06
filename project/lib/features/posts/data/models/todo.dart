@@ -1,6 +1,7 @@
 import 'package:project/features/posts/domain/entities/posts.dart';
 
-class TodoModel extends Posts {
+class TodoModel extends Post {
+  //?Representation of JSON structure that allows us to interact with our data sources.
   const TodoModel({
     int? userId,
     int? id,

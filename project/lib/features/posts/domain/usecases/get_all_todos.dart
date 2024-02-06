@@ -9,7 +9,7 @@ class GetAllPostsUseCase {
 
   GetAllPostsUseCase({required this.repository});
 
-  Future<Either<Failure, List<Posts>>> call() async {
+  Future<Either<Failure, List<Post>>> call() async {
     return await repository.getAllTodos();
   }
 

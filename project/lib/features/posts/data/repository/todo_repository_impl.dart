@@ -11,6 +11,9 @@ import 'package:project/features/posts/domain/repository/posts_repository.dart';
 typedef Future<Unit> DeleteOrUpdateOrAdd();
 
 class PostsReposiotryImpl implements PostsRepository {
+  //? Actual implementations of the repositories in the Domain layer. Repositories are responsible
+  //?to coordinate data from the different Data Sources.
+
   final Remote remoteDataSource;
   final Local localDataSource;
   final NetworkInfo networkInfo;
@@ -21,7 +24,7 @@ class PostsReposiotryImpl implements PostsRepository {
       required this.networkInfo});
 
   @override
-  Future<Either<Failure, Unit>> addPost(Posts todoEntity) async {
+  Future<Either<Failure, Unit>> addPost(Post todoEntity) async {
     final TodoModel todoModel = TodoModel(
         id: todoEntity.id,
         title: todoEntity.title,
@@ -30,7 +33,7 @@ class PostsReposiotryImpl implements PostsRepository {
     if (await networkInfo.isConnected) {
       try {
         await remoteDataSource.addPost(todoModel);
-        return Right(unit);
+        return const Right(unit);
       } on ServerExpetion {
         return Left(ServerFailure());
       }
@@ -47,7 +50,7 @@ class PostsReposiotryImpl implements PostsRepository {
   }
 
   @override
-  Future<Either<Failure, List<Posts>>> getAllTodos() async {
+  Future<Either<Failure, List<Post>>> getAllTodos() async {
     if (await networkInfo.isConnected) //await because its future
     {
       try {
@@ -68,7 +71,7 @@ class PostsReposiotryImpl implements PostsRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> updatePost(Posts todoEntity) async {
+  Future<Either<Failure, Unit>> updatePost(Post todoEntity) async {
     final TodoModel todoModel = TodoModel(
         id: todoEntity.id,
         title: todoEntity.title,
@@ -84,7 +87,7 @@ class PostsReposiotryImpl implements PostsRepository {
     if (await networkInfo.isConnected) {
       try {
         await deleteOrUpdateOrAdd();
-        return Right(unit);
+        return const Right(unit);
       } on ServerExpetion {
         return Left(ServerFailure());
       }

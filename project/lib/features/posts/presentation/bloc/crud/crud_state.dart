@@ -16,7 +16,7 @@ class LoadingState extends CrudState {}
 class ErorrState extends CrudState {
   final String message;
 
-  ErorrState({required this.message});
+  const ErorrState({required this.message});
 
   @override
   List<Object> get props => [message];
@@ -25,7 +25,7 @@ class ErorrState extends CrudState {
 class SuccesCrud extends CrudState {
   final String message;
 
-  SuccesCrud({required this.message});
+  const SuccesCrud({required this.message});
 
    @override
   List<Object> get props => [message];
