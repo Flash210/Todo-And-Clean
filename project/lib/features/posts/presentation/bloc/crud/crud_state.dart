@@ -7,26 +7,27 @@ abstract class CrudState extends Equatable {
   List<Object> get props => [];
 }
 
-class CrudInitial extends CrudState{}
+class CrudInitial extends CrudState {}
+class LoadingState extends CrudState {}
+
 
 class AddPostState extends CrudState {}
 
-class LoadingState extends CrudState {}
 
-class ErorrState extends CrudState {
+class ErrorCrudState extends CrudState {
   final String message;
 
-  const ErorrState({required this.message});
+   ErrorCrudState({required this.message});
 
   @override
   List<Object> get props => [message];
 }
 
-class SuccesCrud extends CrudState {
+class SuccesCrudState extends CrudState {
   final String message;
 
-  const SuccesCrud({required this.message});
+  const SuccesCrudState({required this.message});
 
-   @override
+  @override
   List<Object> get props => [message];
 }

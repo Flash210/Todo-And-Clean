@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => di.sl<CrudBloc>()),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

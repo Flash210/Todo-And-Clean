@@ -10,7 +10,7 @@ abstract class CrudEvent extends Equatable {
 class AddPostEvent extends CrudEvent {
   final Post post;
 
-  const AddPostEvent(this.post);
+  const AddPostEvent({required this.post});
 
   @override
   List<Object> get props => [post];
@@ -19,7 +19,7 @@ class AddPostEvent extends CrudEvent {
 class UpdatePostEvent extends CrudEvent {
   final Post post;
 
-  const UpdatePostEvent(this.post);
+  const UpdatePostEvent({required this.post});
 
   @override
   List<Object> get props => [post];

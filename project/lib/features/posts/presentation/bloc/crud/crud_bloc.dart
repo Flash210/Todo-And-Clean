@@ -45,8 +45,8 @@ class CrudBloc extends Bloc<CrudEvent, CrudState> {
 
   CrudState eitherDoneOrError(Either<Failure, Unit> either, String message) {
     return either.fold(
-        (failure) => ErorrState(message: mapFailureToMessage(failure)),
-        (_) => SuccesCrud(message: message));
+        (failure) => ErrorCrudState(message: mapFailureToMessage(failure)),
+        (_) => SuccesCrudState(message: message));
   }
 
   String mapFailureToMessage(Failure failure) {

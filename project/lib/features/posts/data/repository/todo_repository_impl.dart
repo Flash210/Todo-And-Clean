@@ -26,7 +26,7 @@ class PostsReposiotryImpl implements PostsRepository {
   @override
   Future<Either<Failure, Unit>> addPost(Post todoEntity) async {
     final TodoModel todoModel = TodoModel(
-        id: todoEntity.id,
+        //id: todoEntity.id,// delete it will cuase an error
         title: todoEntity.title,
         completed: todoEntity.completed);
 
